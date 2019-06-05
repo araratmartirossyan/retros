@@ -16,9 +16,19 @@ export default new Router({
       component: () => import(/* webpackChunkName: "login" */ './pages/Auth.vue')
     },
     {
-      path: '/home',
-      name: 'home',
-      component: () => import(/* webpackChunkName: "home" */ './pages/Home.vue')
+      path: '/list',
+      name: 'list',
+      component: () => import(/* webpackChunkName: "list" */ './pages/Retros.vue')
+    },
+    {
+      path: '/retros/:id',
+      name: 'retro',
+      component: () => import(/* webpackChunkName: "retro" */ './pages/Retro.vue')
+    },
+    {
+      path: '/mark/create/:type',
+      name: 'mark',
+      component: () => import(/* webpackChunkName: "mark" */ './pages/Mark.vue')
     }
   ]
 })

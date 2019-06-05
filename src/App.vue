@@ -1,17 +1,11 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app v-if="isAuth">
       <v-toolbar-title class="headline text-uppercase">
         <span>RetrEwoks</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn v-if="isAuth">
-        Add mark
-      </v-btn>
-      <v-btn
-        flat
-        @click="signOut"
-      >
+      <v-btn @click="signOut" flat>
         <span class="mr-2">Log out</span>
       </v-btn>
     </v-toolbar>

@@ -29,7 +29,7 @@ new Vue({
       if (!user) {
         this.$router.push('/login')
       } else {
-        this.$router.push('/home')
+        this.$router.push('/list')
         this.$store.commit('putAuth')
         this.$store.commit('setGoogleUser', user)
       }
