@@ -2,7 +2,11 @@
   <v-app>
     <v-toolbar app v-if="isAuth">
       <v-toolbar-title class="headline text-uppercase">
-        <span>RetrEwoks</span>
+        <span
+          @click="$router.push('/list')"
+        >
+          RetrEwoks
+        </span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn @click="signOut" flat>

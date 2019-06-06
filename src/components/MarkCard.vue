@@ -44,14 +44,12 @@ export default {
         text: 'Some text',
         userName: 'Evan You',
         type: 'bad',
-        userAvatar: 'https://avataaars.io/?avatarStyle=Transparent&amp;topType=ShortHairShortCurly&amp;accessoriesType=Prescription02&amp;hairColor=Black&amp;facialHairType=Blank&amp;clotheType=Hoodie&amp;clotheColor=White&amp;eyeType=Default&amp;eyebrowType=DefaultNatural&amp;mouthType=Default&amp;skinColor=Light&quot;'
+        userAvatar: ''
       })
-    }
-  },
-  methods: {},
-  computed: {
-    cardColor() {
-      return this.mark.type === 'bad' ? '#d23232' : 'green'
+    },
+    cardColor: {
+      type: String,
+      default: '#d23232'
     }
   }
 }

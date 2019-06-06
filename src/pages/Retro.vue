@@ -1,26 +1,22 @@
 <template>
 <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-      <v-flex xs12 sm6 md6>
+      <v-flex
+        v-for="(card, key) in cards"
+        :key="key"
+        xs12
+        sm6
+        md3
+      >
+        <h2>{{card.title}}</h2>
         <div
           class="item"
           v-for="(item, index) in marks"
           :key="index"
         >
           <MarkCard
-            v-if="item.type === 'bad'"
-            :mark="item"
-          />
-        </div>
-      </v-flex>
-      <v-flex xs12 sm6 md6>
-        <div
-          class="item"
-          v-for="(item, index) in marks"
-          :key="index"
-        >
-          <MarkCard
-            v-if="item.type === 'good'"
+            v-if="item.type === card.type"
+            :cardColor="card.color"
             :mark="item"
           />
         </div>
@@ -46,9 +42,13 @@
 
 <script>
 import { mapGetters, mapActions, mapMutations } from 'vuex'
+import { cards } from './mark.mock'
 
 export default {
   name: 'Home',
+  data: () => ({
+    cards
+  }),
   components: {
     MarkCard: () => import('../components/MarkCard'),
     Dialog: () => import('../components/Dialog'),
@@ -56,6 +56,9 @@ export default {
   },
   mounted() {
     this.setRetroId()
+  },
+  destroyed() {
+    this.openMenu()
   },
   computed: {
     ...mapGetters([

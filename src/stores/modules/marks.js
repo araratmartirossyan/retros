@@ -24,20 +24,28 @@ const mutations = {
   },
   updateMarkForm(_, { key, value }) {
     state.markForm[key] = value
+  },
+  clearState() {
+    state.markForm = {
+      text: ''
+    }
   }
 }
 
 const actions = {
-  pushMark({ rootState: { login } }, type) {
+  async pushMark({ rootState: { login }, commit }) {
     const { userProfile: { photoURL, displayName } } = login
-    const marks = firebase.database().ref(`${type}/${state.retroId}`)
-    marks.push({
+    const { params: { type } } = router.currentRoute
+    const marks = firebase.database().ref(`marks/${state.retroId}`)
+    await marks.push({
       ...state.markForm,
       type,
       userAvatar: photoURL,
       userName: displayName,
       id: state.retroId
     })
+    await router.replace(`/retros/${state.retroId}`)
+    await commit('clearState')
   }
 }
 

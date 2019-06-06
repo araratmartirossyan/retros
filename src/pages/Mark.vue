@@ -4,7 +4,6 @@
     @pushToStrim="pushMark"
     :markForm="markForm"
   />
-  <!-- <h2>Hello</h2> -->
 </template>
 
 <script>

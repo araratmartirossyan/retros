@@ -2,7 +2,7 @@
   <div class="dialog-form">
     <v-container fluid grid-list-md>
       <v-layout row wrap>
-        <v-flex xs6>
+        <v-flex xs12>
           <v-textarea
             name="text"
             label="Your Mark"
@@ -10,7 +10,16 @@
             :value="markForm.text"
             hint="Hint text"
           />
-          <v-btn @click="$emit('pushToStrim')">
+        </v-flex>
+        <v-flex xs12>
+          <v-btn
+            class="submit-btn"
+            large
+            light
+            @click="$emit('pushToStrim')"
+            :disabled="disabled"
+            color="#ff6200"
+          >
             Push to stream
           </v-btn>
         </v-flex>
@@ -27,6 +36,11 @@ export default {
       type: Object
     }
   },
+  computed: {
+    disabled() {
+      return this.markForm.text.length < 4
+    }
+  },
   methods: {
     updateMarkForm(value) {
       this.$emit('updateForm', {
@@ -37,3 +51,12 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+  .submit-btn
+    margin 0
+    width 100%
+
+    .v-btn__content
+      color #fff
+</style>

@@ -58,12 +58,16 @@ const mutations = {
   hideError() {
     state.tokenError = ''
     state.error = false
+  },
+  setLogOut() {
+    state.isAuth = false
   }
 }
 
 const actions = {
-  async signOut() {
+  async signOut({ commit }) {
     await firebase.auth().signOut()
+    commit('setLogOut')
     localStorage.removeItem('accessToken')
     localStorage.removeItem('uid')
     router.replace('/login')

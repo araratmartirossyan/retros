@@ -28,7 +28,7 @@ export default {
   }),
   methods: {
     openMenu(type) {
-      // this.$router.push(`/mark/create/${type}`)
+      this.$router.push(`/mark/create/${type}`)
     }
   }
 }
