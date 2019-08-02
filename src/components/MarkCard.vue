@@ -58,4 +58,5 @@ export default {
 <style lang="stylus" scoped>
   .mx-auto
     margin-bottom 10px!important
+    cursor pointer!important
 </style>

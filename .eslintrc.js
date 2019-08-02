@@ -17,6 +17,7 @@ module.exports = {
     'linebreak-style': 0,
     'max-len': 0,
     "import/prefer-default-export": "off",
+    "no-underscore-dangle":  ["error", { "allow": ["_id"] }],
     // disallow parameter object manipulation except for specific exclusions
     'no-param-reassign': ['error', {
       props: true,
