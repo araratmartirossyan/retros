@@ -9,14 +9,24 @@ import 'firebase/auth'
 
 Vue.config.productionTip = false
 
+const {
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId
+} = process.env
+
 const firebaseConfig = {
-  apiKey: 'AIzaSyAuuV9Yn3CHXLJM09tFwS0NsZrGznidgTI',
-  authDomain: 'retrewoks.firebaseapp.com',
-  databaseURL: 'https://retrewoks.firebaseio.com',
-  projectId: 'retrewoks',
-  storageBucket: 'retrewoks.appspot.com',
-  messagingSenderId: '821153639587',
-  appId: '1:821153639587:web:10250af2ac0f0fad'
+  apiKey,
+  authDomain,
+  databaseURL,
+  projectId,
+  storageBucket,
+  messagingSenderId,
+  appId
 }
 firebase.initializeApp(firebaseConfig)
 
