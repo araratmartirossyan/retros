@@ -1,3 +1,5 @@
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+
 # RetroWoks
 
 Retrowks it the realtime retrospective solution that allows you to keep a realtime case board during the retrospective and the sprint. It’s convenient to keep notes and add ideas to the board at any time through the understandable user - friendly interface.
