@@ -11,7 +11,8 @@
         "ignored-file",
         "*.md"
       ],
-      "message": "chore(release): publish"
+      "message": "chore(release): publish",
+      "conventionalCommits": true
     }
   }
 }

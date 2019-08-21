@@ -1,41 +1,19 @@
 import Vue from 'vue'
-import firebase from 'firebase'
+import { onAuth } from '@retros/firebase-adapter'
 import App from './App.vue'
 import router from './router'
 import store from './stores'
 import './plugins/vuetify'
-import 'firebase/auth'
 
 
 Vue.config.productionTip = false
-
-const {
-  apiKey,
-  authDomain,
-  databaseURL,
-  projectId,
-  storageBucket,
-  messagingSenderId,
-  appId
-} = process.env
-
-const firebaseConfig = {
-  apiKey,
-  authDomain,
-  databaseURL,
-  projectId,
-  storageBucket,
-  messagingSenderId,
-  appId
-}
-firebase.initializeApp(firebaseConfig)
 
 new Vue({
   router,
   store,
   render: h => h(App),
   mounted() {
-    firebase.auth().onAuthStateChanged((user) => {
+    onAuth((user) => {
       if (!user) {
         this.$router.push('/login')
       } else {

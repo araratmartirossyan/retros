@@ -13,8 +13,10 @@
   },
   "scripts": {
     "start": "yarn @retros/app serve",
-    "@retros/app": "yarn workspace @retros/app",
     "lint": "lerna run lint",
-    "bootstrap": "lerna bootstrap"
+    "bootstrap": "lerna bootstrap",
+    "publish": "lerna publish",
+    "@retros/app": "yarn workspace @retros/app",
+    "@retros/firebase-adapter": "yarn workspace @retros/firebase-adapter"
   }
 }
