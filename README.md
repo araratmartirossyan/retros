@@ -3,10 +3,7 @@
 Retrowks it the realtime retrospective solution that allows you to keep a realtime case board during the retrospective and the sprint. It’s convenient to keep notes and add ideas to the board at any time through the understandable user - friendly interface.
 
 
-![Screenshot-2019-08-22-at-16.18.58.png](https://imgshare.io/images/2019/08/22/Screenshot-2019-08-22-at-16.18.58.png)
-![Screenshot-2019-08-22-at-16.19.08.png](https://imgshare.io/images/2019/08/22/Screenshot-2019-08-22-at-16.19.08.png)
-![Screenshot-2019-08-22-at-16.19.16.png](https://imgshare.io/images/2019/08/22/Screenshot-2019-08-22-at-16.19.16.png)
-![Screenshot-2019-08-22-at-16.19.22.png](https://imgshare.io/images/2019/08/22/Screenshot-2019-08-22-at-16.19.22.png)
+![](https://imgshare.io/images/2019/08/22/Screenshot-2019-08-22-at-16.54.16.png)
 
 ## Functions
 
