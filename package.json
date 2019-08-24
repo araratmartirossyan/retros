@@ -8,14 +8,17 @@
     "node": ">=10.0.0"
   },
   "devDependencies": {
-    "yarn": "^1.17.3",
-    "lerna": "^3.16.4"
+    "lerna": "^3.16.4",
+    "npm-auth-to-token": "^1.0.0",
+    "verdaccio": "^4.2.1",
+    "yarn": "^1.17.3"
   },
   "scripts": {
     "start": "yarn @retros/app serve",
     "lint": "lerna run lint",
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
+    "e2e": "bash e2e.sh",
     "@retros/app": "yarn workspace @retros/app",
     "@retros/firebase-adapter": "yarn workspace @retros/firebase-adapter"
   }

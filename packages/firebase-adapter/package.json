@@ -17,9 +17,6 @@
   "files": [
     "lib"
   ],
-  "publishConfig": {
-    "registry": ""
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/myfailemtions/retros.git"
