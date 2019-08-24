@@ -1,4 +1,8 @@
-import firebase from 'firebase'
+import {
+  emailPasswordAuth,
+  googleAuth,
+  signOut
+} from '@retros/firebase-adapter'
 import router from '../../router'
 
 const state = {
@@ -66,16 +70,12 @@ const mutations = {
 
 const actions = {
   async signOut({ commit }) {
-    await firebase.auth().signOut()
+    await signOut()
     commit('setLogOut')
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('uid')
     router.replace('/login')
   },
   async googleAuth({ commit }) {
-    const provider = new firebase.auth.GoogleAuthProvider()
-    provider.addScope('https://www.googleapis.com/auth/contacts.readonly')
-    const { user } = await firebase.auth().signInWithPopup(provider)
+    const { user } = await googleAuth()
     await commit('setGoogleUser', user)
     await commit('putAuth', user)
   },
@@ -83,7 +83,7 @@ const actions = {
     commit('setLoading')
     try {
       const { email, password } = state.loginForm
-      const { user } = await firebase.auth().signInWithEmailAndPassword(email, password)
+      const { user } = await emailPasswordAuth(email, password)
       await commit('setToken', user)
       await commit('setLoading')
     } catch (err) {

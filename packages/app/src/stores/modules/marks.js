@@ -1,4 +1,4 @@
-import firebase from 'firebase'
+import { getMarks } from '@retros/firebase-adapter'
 import router from '../../router'
 
 const state = {
@@ -11,7 +11,7 @@ const state = {
 
 const getters = {
   marks: () => {
-    const marks = firebase.database().ref(`marks/${state.retroId}`)
+    const marks = getMarks(state.retroId)
     marks.on('value', (snapshot) => { state.marks = snapshot.val() })
     return state.marks
   }
@@ -36,7 +36,7 @@ const actions = {
   async pushMark({ rootState: { login }, commit }) {
     const { userProfile: { photoURL, displayName } } = login
     const { params: { type } } = router.currentRoute
-    const marks = firebase.database().ref(`marks/${state.retroId}`)
+    const marks = getMarks(state.retroId)
     await marks.push({
       ...state.markForm,
       type,
