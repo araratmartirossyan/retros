@@ -1,4 +1,4 @@
-# RetroWoks
+# Retros
 
 Retrowks it the realtime retrospective solution that allows you to keep a realtime case board during the retrospective and the sprint. It’s convenient to keep notes and add ideas to the board at any time through the understandable user - friendly interface.
 
@@ -27,13 +27,13 @@ Retrowks it the realtime retrospective solution that allows you to keep a realti
 4) Login to your Firebase by using the console with following command ```firebase login```
 5) Create .env file in the project folder following next template:
 ```
-apiKey = 'firebase api key'
-authDomain = 'firebase auth domain'
-databaseURL = 'firebase databaseURL'
-projectId = 'firebase projectId'
-storageBucket = 'firebase storageBucket'
-messagingSenderId = 'firebase messagingSenderId'
-appId = 'firebase appId'
+VUE_APP_API_KEY = 'firebase api key'
+VUE_APP_AUTH_DOMAIN = 'firebase auth domain'
+VUE_APP_DATABASE_URL = 'firebase databaseURL'
+VUE_APP_PROJECT_ID = 'firebase projectId'
+VUE_APP_STORAGE_BUCKET = 'firebase storageBucket'
+VUE_APP_MESSAGING_SENDER_ID = 'firebase messagingSenderId'
+VUE_APP_APP_ID = 'firebase appId'
 
 ```
 All this data you can find in your [Firebase console](https://console.firebase.google.com), click on create a new project and choose config for the web. More info at [official documentation](https://firebase.google.com/docs/?authuser=0)
