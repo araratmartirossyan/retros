@@ -1,6 +1,11 @@
 <template>
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
+      <v-btn
+        color="red"
+        class="white--text"
+        @click="openMenu('roomForm')"
+      >Create new room</v-btn>
       <v-flex xs12 sm12 md12>
         <List
           @onRetroClick="goTo"
@@ -11,16 +16,21 @@
         />
       </v-flex>
     </v-layout>
+    <Dialog name="roomForm">
+      <CreateRoomForm />
+    </Dialog>
   </v-container>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Home',
   components: {
-    List: () => import('../components/List')
+    List: () => import('../components/List'),
+    CreateRoomForm: () => import('../components/CreateRoomForm'),
+    Dialog: () => import('../components/Dialog')
   },
   computed: {
     ...mapGetters([
@@ -28,6 +38,9 @@ export default {
     ])
   },
   methods: {
+    ...mapMutations([
+      'openMenu'
+    ]),
     goTo(id) {
       this.$router.push(`retros/${id}`)
     }

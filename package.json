@@ -14,7 +14,7 @@
     "yarn": "^1.17.3"
   },
   "scripts": {
-    "start": "yarn @retros/app serve",
+    "start": "export $(cat .env | xargs) && yarn @retros/app serve",
     "lint": "lerna run lint",
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
