@@ -2,7 +2,11 @@ import { addRetro, getRetros } from '@retros/firebase-adapter'
 
 const state = {
   retros: [],
-  retroForm: {}
+  retroForm: {},
+  roomForm: {
+    title: '',
+    date: new Date()
+  }
 }
 
 const getters = {
@@ -15,15 +19,22 @@ const getters = {
   }
 }
 
-const mutations = {}
+const mutations = {
+  updateRoomForm(_, { key, value }) {
+    state.roomForm[key] = value
+  }
+}
 
 const actions = {
-  createRetro() {
+  async createRoom({ dispatch }) {
+    const { date, title } = state.roomForm
     const marks = getRetros()
-    addRetro(marks, {
-      title: 'Retro Sprint 19',
-      date: '2019-01-01'
+    await addRetro(marks, {
+      title,
+      date
     })
+    state.roomForm = {}
+    await dispatch('closeDialog', {}, { root: true })
   }
 }
 

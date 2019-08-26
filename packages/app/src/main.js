@@ -5,14 +5,13 @@ import router from './router'
 import store from './stores'
 import './plugins/vuetify'
 
-
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,
   render: h => h(App),
   mounted() {
+    console.log(process)
     onAuth((user) => {
       if (!user) {
         this.$router.push('/login')

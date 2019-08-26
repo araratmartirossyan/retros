@@ -12,6 +12,8 @@ const {
   VUE_APP_APP_ID
 } = process.env
 
+console.log(process)
+
 const firebaseConfig = {
   apiKey: VUE_APP_API_KEY,
   authDomain: VUE_APP_AUTH_DOMAIN,
@@ -56,7 +58,15 @@ export const getMarks = retroId => firebase.database()
 export const getRetros = () => firebase.database()
   .ref('retros')
 
-export const addRetro = (dataBase, data) => dataBase.push(data)
+export const addRetro = async (dataBase, data) => {
+  try {
+    const response = await dataBase.push(data)
+    return response
+  } catch (err) {
+    console.warn('on retro create error', err)
+    return err
+  }
+}
 
 export default {
   initFirebase,
