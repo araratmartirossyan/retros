@@ -9,6 +9,7 @@
       <v-flex xs12 sm12 md12>
         <List
           @onRetroClick="goTo"
+          @onRetroEdit="getRoom"
           :items="retros"
           title="Avialiable Retrospectives"
           toolbarColor="red"
@@ -23,7 +24,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapMutations, mapActions } from 'vuex'
 
 export default {
   name: 'Home',
@@ -38,6 +39,9 @@ export default {
     ])
   },
   methods: {
+    ...mapActions([
+      'getRoom'
+    ]),
     ...mapMutations([
       'openMenu'
     ]),

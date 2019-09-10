@@ -9,7 +9,7 @@ const getters = {
 }
 
 const mutations = {
-  openMenu(_, modalName) {
+  openMenu(_, modalName = '') {
     state.isMenuOpen = !state.isMenuOpen
     state.modalName = modalName
   },

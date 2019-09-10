@@ -12,3 +12,18 @@ export const formFields = [
     component: 'DatePicker'
   }
 ]
+
+export const actionButtons = [
+  {
+    name: 'close',
+    icon: 'close'
+  },
+  {
+    name: 'edit',
+    icon: 'edit'
+  },
+  {
+    name: 'share',
+    icon: 'share'
+  }
+]

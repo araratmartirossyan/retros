@@ -11,7 +11,6 @@ new Vue({
   store,
   render: h => h(App),
   mounted() {
-    console.log(process)
     onAuth((user) => {
       if (!user) {
         this.$router.push('/login')

@@ -12,7 +12,9 @@ const state = {
 const getters = {
   marks: () => {
     const marks = getMarks(state.retroId)
-    marks.on('value', (snapshot) => { state.marks = snapshot.val() })
+    marks.on('value', (snapshot) => {
+      state.marks = snapshot.val()
+    })
     return state.marks
   }
 }

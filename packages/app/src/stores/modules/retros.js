@@ -1,11 +1,18 @@
-import { addRetro, getRetros } from '@retros/firebase-adapter'
+import {
+  addRetro,
+  getRetros,
+  removeRetro,
+  getRoom,
+  updateRoom
+} from '@retros/firebase-adapter'
 
 const state = {
   retros: [],
   retroForm: {},
   roomForm: {
     title: '',
-    date: new Date()
+    date: new Date(),
+    isEdit: false
   }
 }
 
@@ -16,16 +23,48 @@ const getters = {
       state.retros = snapshot.val()
     })
     return state.retros
-  }
+  },
+  getRoom: () => state.roomForm
 }
 
 const mutations = {
   updateRoomForm(_, { key, value }) {
     state.roomForm[key] = value
+  },
+  setRoom(_, room) {
+    state.roomForm = {
+      ...room,
+      isEdit: true
+    }
   }
 }
 
 const actions = {
+  async getRoom({ commit }, id) {
+    try {
+      const room = await getRoom(id)
+      await commit('setRoom', {
+        ...room,
+        id
+      })
+      await commit('openMenu', 'roomForm', { root: true })
+    } catch (err) {
+      console.warn('get room failed', err)
+    }
+  },
+  async updateRoom({ dispatch }) {
+    const { date, title, id } = state.roomForm
+    try {
+      await updateRoom(id, {
+        date,
+        title
+      })
+      state.roomForm = {}
+      await dispatch('closeDialog', {}, { root: true })
+    } catch (err) {
+      console.warn(err)
+    }
+  },
   async createRoom({ dispatch }) {
     const { date, title } = state.roomForm
     const marks = getRetros()
@@ -35,6 +74,14 @@ const actions = {
     })
     state.roomForm = {}
     await dispatch('closeDialog', {}, { root: true })
+  },
+  async closeRoom({ commit }, id) {
+    try {
+      await removeRetro(id)
+      commit('setRemoveConfirm')
+    } catch (err) {
+      throw err
+    }
   }
 }
 
