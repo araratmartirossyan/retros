@@ -58,12 +58,44 @@ export const getMarks = retroId => firebase.database()
 export const getRetros = () => firebase.database()
   .ref('retros')
 
+export const getRoom = async (id) => {
+  try {
+    const snapshot = await firebase.database().ref(`retros/${id}`).once('value')
+    return snapshot.val()
+  } catch (err) {
+    console.warn(err)
+    throw err
+  }
+}
+
+export const updateRoom = async (id, formData) => {
+  try {
+    const snapshot = await firebase.database().ref(`retros/${id}`).update(formData)
+    return snapshot
+  } catch (err) {
+    console.warn(err)
+    throw err
+  }
+}
+
 export const addRetro = async (dataBase, data) => {
   try {
     const response = await dataBase.push(data)
     return response
   } catch (err) {
     console.warn('on retro create error', err)
+    return err
+  }
+}
+
+export const removeRetro = async (retroId) => {
+  try {
+    const response = await firebase.database()
+      .ref(`retros/${retroId}`)
+      .remove()
+    return response
+  } catch (err) {
+    console.warn('on retro remove error', err)
     return err
   }
 }
@@ -77,5 +109,8 @@ export default {
   onAuth,
   getMarks,
   getRetros,
-  addRetro
+  addRetro,
+  getRoom,
+  removeRetro,
+  updateRoom
 }

@@ -21,5 +21,9 @@
     "e2e": "bash e2e.sh",
     "@retros/app": "yarn workspace @retros/app",
     "@retros/firebase-adapter": "yarn workspace @retros/firebase-adapter"
+  },
+  "dependencies": {
+    "@chenfengyuan/vue-qrcode": "^1.0.1",
+    "vue": "^2.6.10"
   }
 }

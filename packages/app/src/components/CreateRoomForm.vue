@@ -18,17 +18,31 @@
           name="date"
           label="Retrospective date"
           @fieldUpdated="updateRoomForm"
+          :value="roomForm.date"
         />
-        <v-flex xs12>
-          <v-btn
-            large
-            light
-            class="submit-btn white--text"
-            @click="createRoom"
-            color="#ff6200"
-          >
-            Create Room
-          </v-btn>
+        <v-flex xs12 row>
+          <v-flex xs12>
+            <v-btn
+              large
+              light
+              class="submit-btn white--text"
+              @click="handleForm"
+              color="#ff6200"
+            >
+              {{ roomForm.isEdit ? 'Update room' : 'Create room' }}
+            </v-btn>
+          </v-flex>
+          <v-flex xs12>
+            <v-btn
+              large
+              light
+              class="submit-btn white--text"
+              @click="openMenu"
+              color="#d23232"
+            >
+              Close
+            </v-btn>
+          </v-flex>
         </v-flex>
       </v-layout>
     </v-container>
@@ -44,11 +58,17 @@ export default {
     DatePicker: () => import('./DatePicker')
   },
   methods: {
+    handleForm() {
+      const { isEdit } = this.roomForm
+      return isEdit ? this.updateRoom() : this.createRoom()
+    },
     ...mapActions([
-      'createRoom'
+      'createRoom',
+      'updateRoom'
     ]),
     ...mapMutations([
-      'updateRoomForm'
+      'updateRoomForm',
+      'openMenu'
     ])
   },
   computed: {

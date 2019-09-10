@@ -29,6 +29,11 @@ export default new Router({
       path: '/mark/create/:type',
       name: 'mark',
       component: () => import(/* webpackChunkName: "mark" */ './pages/Mark.vue')
+    },
+    {
+      path: '/retros/share/:id',
+      name: 'share',
+      component: () => import(/* webpackChunkName: "mark" */ './pages/Share.vue')
     }
   ]
 })
