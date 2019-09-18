@@ -1,17 +1,19 @@
 <template>
-  <div class="auth-box">
-    <div class="logo">
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/retrewoks.appspot.com/o/New%20Project.png?alt=media&token=16db94b3-37a5-4f38-9a95-6c0af4316b38"
-      />
+  <div class="auth">
+    <div class="auth-box">
+      <div class="auth-box_left">
+        <h3>Welcome to {{logo}}</h3>
+        <span>An open application for retrospectives for make it simple. Are you ready?</span>
+        <LoginForm
+          @updateLoginForm="updateLoginForm"
+          @onLogin="handleSubmit"
+          :loginFrom="loginForm"
+        />
+        or
+        <SocialLogin @onClick="googleAuth" />
+      </div>
+      <div class="auth-box_right" />
     </div>
-    <v-btn
-      color="white"
-      type="danger"
-      @click="googleAuth"
-    >
-      Login
-    </v-btn>
   </div>
 </template>
 
@@ -25,28 +27,19 @@ import {
 
 export default {
   name: 'Auth',
-  // watch: {
-  //   loading() {
-  //     this.loader.close()
-  //   }
-  // },
   data: () => ({
-    loader: () => {}
+    loader: () => {},
+    logo: '<Retros />'
   }),
+  components: {
+    LoginForm: () => import('../components/LoginForm'),
+    SocialLogin: () => import('../components/SocialLogin')
+  },
   methods: {
     ...mapActions({
       handleSubmit: 'signIn',
       googleAuth: 'googleAuth'
     }),
-    handleLogin() {
-      // this.loader = this.$loading({
-      //   lock: true,
-      //   text: 'Loading',
-      //   spinner: 'el-icon-loading',
-      //   background: 'rgba(0, 0, 0, 0.7)'
-      // })
-      this.handleSubmit()
-    },
     ...mapMutations([
       'updateLoginForm',
       'hideError'
@@ -65,15 +58,49 @@ export default {
 </script>
 
 <style lang="stylus">
+  borderRadius = 25px
+  cardBg = #1698e9
+
   .auth-box
-    background-color rgb(255, 98, 0)
-    height 100vh
-    justify-content center
+    justify-content flex-start
     align-items center
     display flex
-    flex-direction column
+    margin 5%
+    box-shadow 0 16px 40px rgba(0,0,0,0.12)
+    border-radius 12px
 
-    .logo img
-      width 120px
-      height 120px
+    &_left
+      width 30%
+      height 80vh
+      padding 40px
+      background #fff
+      border-top-left-radius 12px
+      border-bottom-left-radius 12px
+
+      h3
+        color black
+        font-weight 300
+        font-size 2em
+
+      span
+        display block
+        color #black
+        font-weight 300
+        font-size 1.2em
+        margin-bottom 20px
+
+    &_right
+      background-image url('https://firebasestorage.googleapis.com/v0/b/retrewoks.appspot.com/o/15301.jpg?alt=media&token=edd7ae77-e77e-4d31-b242-fa4b18fa25ba')
+      background-size cover
+      width 70%
+      height 80vh
+      border-top-right-radius 12px
+      border-bottom-right-radius 12px
+
+  .logo
+    font-size 4em
+    padding 20px
+    position absolute
+    color black
+    font-family Source Sans Pro,Arial,sans-serif
 </style>
