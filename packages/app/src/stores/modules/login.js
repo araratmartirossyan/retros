@@ -10,6 +10,7 @@ const state = {
     email: '',
     password: ''
   },
+  userProfile: {},
   tokenError: '',
   error: false,
   loading: false,
@@ -21,7 +22,8 @@ const getters = {
     message: state.tokenError.message,
     stateError: state.error
   }),
-  isAuth: () => state.isAuth
+  isAuth: () => state.isAuth,
+  userProfile: () => state.userProfile
 }
 
 const mutations = {
@@ -31,7 +33,7 @@ const mutations = {
   setToken(_, { uid, ra }) {
     localStorage.setItem('accessToken', ra)
     localStorage.setItem('uid', uid)
-    router.replace('/home')
+    router.replace('/list')
     state.isAuth = true
   },
   putAuth() {
@@ -85,6 +87,8 @@ const actions = {
       const { email, password } = state.loginForm
       const { user } = await emailPasswordAuth(email, password)
       await commit('setToken', user)
+      await commit('putAuth', user)
+      debugger
       await commit('setLoading')
     } catch (err) {
       await commit('setTokenError', err)
