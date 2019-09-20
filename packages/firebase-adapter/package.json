@@ -1,0 +1,33 @@
+{
+  "name": "@retros/firebase-adapter",
+  "version": "0.0.1",
+  "description": "A firebase adapter for retros application",
+  "keywords": [
+    "firebase",
+    "retros",
+    "retrospective"
+  ],
+  "homepage": "https://github.com/myfailemtions/retros#readme",
+  "license": "MIT",
+  "main": "lib/firebase-adapter.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myfailemtions/retros.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/myfailemtions/retros/issues"
+  },
+  "dependencies": {
+    "firebase": "^6.4.0"
+  }
+}

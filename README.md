@@ -41,3 +41,5 @@ All this data you can find in your [Firebase console](https://console.firebase.g
 6) Run the ```firebase deploy```
 
 Congratulations! Your application online.
+
+[![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
