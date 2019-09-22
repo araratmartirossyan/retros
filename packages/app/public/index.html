@@ -2,19 +2,115 @@
 <html lang="en">
 
 <head>
-  <title>restewoks</title>
+  <title>Retros</title>
+
+  <!-- Meta tags -->
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Retros - Retspective app powered by VueJS.">
+  <meta name="keywords" content="vuejs, retrospective">
 
-  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
   <link rel="manifest" href="<%= BASE_URL %>manifest.json" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Material+Icons">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans|Raleway|Roboto|Source+Sans+Pro&display=swap"
     rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,600,700">
+
+  <!-- Icons -->
+
+  <link rel="icon" type="image/x-icon" href="<%= BASE_URL %>favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="<%= BASE_URL %>icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="<%= BASE_URL %>icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="<%= BASE_URL %>icons/favicon-16x16.png">
+  <link rel="mask-icon" href="<%= BASE_URL %>icons/safari-pinned-tab.svg" color="#5bbad5">
+
+  <!-- PWA meta settings -->
+
+  <meta name="theme-color" content="#41b883">
+  <meta name="apple-mobile-web-app-title" content="Retros">
+  <meta name="application-name" content="Retros">
+  <meta name="msapplication-TileColor" content="#41b883">
+  <meta name="theme-color" content="#fff">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+
+  <!-- Social meta-tags -->
+
+  <meta property="og:title" content="Retros">
+  <meta property="og:description" content="Retros - Retspective app powered by VueJS.">
+  <meta property="og:image"
+    content="https://firebasestorage.googleapis.com/v0/b/retrewoks.appspot.com/o/15301.jpg?alt=media&token=edd7ae77-e77e-4d31-b242-fa4b18fa25ba">
+  <meta property="og:url" content="https://retros.me/">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Splashscreens -->
+
+  <link href="<%= BASE_URL %>icons/apple-splash-640-1136.png"
+    media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-750-1334.png"
+    media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-828-1792.png"
+    media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1125-2436.png"
+    media="(device-width: 562px) and (device-height: 1218px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1136-640.png"
+    media="(device-width: 568px) and (device-height: 320px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1242-2208.png"
+    media="(device-width: 621px) and (device-height: 1104px) and (-webkit-device-pixel-ratio: 3)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1242-2688.png"
+    media="(device-width: 621px) and (device-height: 1344px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1334-750.png"
+    media="(device-width: 667px) and (device-height: 375px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1536-2048.png"
+    media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1668-2388.png"
+    media="(device-width: 834px) and (device-height: 1184px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1792-828.png"
+    media="(device-width: 896px) and (device-height: 414px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2048-1536.png"
+    media="(device-width: 1024px) and (device-height: 768px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2048-2732.png"
+    media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2208-1242.png"
+    media="(device-width: 1104px) and (device-height: 621px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2224-1668.png"
+    media="(device-width: 1112px) and (device-height: 834px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2388-1668.png"
+    media="(device-width: 1184px) and (device-height: 834px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2436-1125.png"
+    media="(device-width: 1218px) and (device-height: 562px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2688-1242.png"
+    media="(device-width: 1344px) and (device-height: 621px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-2732-2048.png"
+    media="(device-width: 1366px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+  <link href="<%= BASE_URL %>icons/apple-splash-1668-2388.png"
+    media="(device-width: 834px) and (device-height: 1388px) and (-webkit-device-pixel-ratio: 2)"
+    rel="apple-touch-startup-image" />
+
 </head>
 
 <body>
