@@ -16,6 +16,7 @@
   "scripts": {
     "start": "export $(cat .env | xargs) && yarn @retros/app serve",
     "lint": "lerna run lint",
+    "build": "yarn @retros/app build",
     "bootstrap": "lerna bootstrap",
     "publish": "lerna publish",
     "e2e": "bash e2e.sh",
