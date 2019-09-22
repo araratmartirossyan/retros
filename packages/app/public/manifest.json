@@ -1,0 +1,10 @@
+{
+    "name": "Retros",
+    "short_name": "Retros",
+    "start_url": "/",
+    "description": "Retros - Retrospective app.",
+    "display": "standalone",
+    "theme_color": "#41b883",
+    "background_color": "#fff",
+    "icons": [{}]
+}
