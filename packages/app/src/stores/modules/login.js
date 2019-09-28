@@ -74,7 +74,7 @@ const actions = {
   async signOut({ commit }) {
     await signOut()
     commit('setLogOut')
-    router.replace('/login')
+    router.replace('/')
   },
   async googleAuth({ commit }) {
     const { user } = await googleAuth()

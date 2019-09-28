@@ -7,14 +7,22 @@
         @click="openMenu('roomForm')"
       >Create new room</v-btn>
       <v-flex xs12 sm12 md12>
-        <List
+        <RetroCard
+          v-for="(item, key) in retros"
+          :key="key"
+          :item="item"
+          :id="key"
+          @onRetroClick="goTo"
+          @onRetroEdit="getRoom"
+        />
+        <!-- <List
           @onRetroClick="goTo"
           @onRetroEdit="getRoom"
           :items="retros"
           title="Avialiable Retrospectives"
           toolbarColor="red"
           isDark
-        />
+        /> -->
       </v-flex>
     </v-layout>
     <Dialog name="roomForm">
@@ -31,7 +39,8 @@ export default {
   components: {
     List: () => import('../components/List'),
     CreateRoomForm: () => import('../components/CreateRoomForm'),
-    Dialog: () => import('../components/Dialog')
+    Dialog: () => import('../components/Dialog'),
+    RetroCard: () => import('../components/RetroRoomCard')
   },
   computed: {
     ...mapGetters([

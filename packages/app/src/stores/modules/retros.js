@@ -78,7 +78,6 @@ const actions = {
   async closeRoom({ commit }, id) {
     try {
       await removeRetro(id)
-      commit('setRemoveConfirm')
     } catch (err) {
       throw err
     }
