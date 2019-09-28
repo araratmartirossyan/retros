@@ -1,13 +1,17 @@
 import {
   addRetro,
-  getRetros,
+  getActiveRetros,
+  getFinishedRetros,
   removeRetro,
   getRoom,
   updateRoom
 } from '@retros/firebase-adapter'
+import { omit } from 'ramda'
+import { prepareDate } from '@/utils/retroUtils'
 
 const state = {
-  retros: [],
+  activeRetros: [],
+  finishedRetros: [],
   retroForm: {},
   roomForm: {
     title: '',
@@ -17,12 +21,19 @@ const state = {
 }
 
 const getters = {
-  retros: () => {
-    const marks = getRetros()
+  activeRetros: () => {
+    const marks = getActiveRetros()
     marks.on('value', (snapshot) => {
-      state.retros = snapshot.val()
+      state.activeRetros = snapshot.val()
     })
-    return state.retros
+    return state.activeRetros
+  },
+  finishedRetros: () => {
+    const marks = getFinishedRetros()
+    marks.on('value', (snapshot) => {
+      state.finishedRetros = snapshot.val()
+    })
+    return state.finishedRetros
   },
   getRoom: () => state.roomForm
 }
@@ -53,12 +64,11 @@ const actions = {
     }
   },
   async updateRoom({ dispatch }) {
-    const { date, title, id } = state.roomForm
+    const { id, date } = state.roomForm
+    const clearedForm = omit(['id', 'isEdit'], state.roomForm)
+    const convertedDate = prepareDate(date)
     try {
-      await updateRoom(id, {
-        date,
-        title
-      })
+      await updateRoom(id, { ...clearedForm, ...convertedDate })
       state.roomForm = {}
       await dispatch('closeDialog', {}, { root: true })
     } catch (err) {
@@ -66,16 +76,14 @@ const actions = {
     }
   },
   async createRoom({ dispatch }) {
-    const { date, title } = state.roomForm
-    const marks = getRetros()
+    const marks = getActiveRetros()
     await addRetro(marks, {
-      title,
-      date
+      ...state.roomForm
     })
     state.roomForm = {}
     await dispatch('closeDialog', {}, { root: true })
   },
-  async closeRoom({ commit }, id) {
+  async closeRoom(id) {
     try {
       await removeRetro(id)
     } catch (err) {

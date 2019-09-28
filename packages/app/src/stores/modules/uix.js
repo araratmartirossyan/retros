@@ -15,6 +15,9 @@ const mutations = {
   },
   toggleDialog() {
     state.isMenuOpen = !state.isMenuOpen
+  },
+  forceCloseDialog() {
+    state.isMenuOpen = false
   }
 }
 

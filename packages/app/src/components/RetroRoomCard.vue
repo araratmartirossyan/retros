@@ -1,12 +1,12 @@
 <template>
   <div class="retro-room" @click="handleClick">
     <div class="retro-room-header">
-      <span class="date">29.08.19</span>
-      <span class="week-day">Thursday</span>
+      <span class="date">{{item.date}}</span>
+      <span class="week-day">{{item.weekDay}}</span>
     </div>
     <div class="retro-room-content">
       <h4 class="room-name">{{item.title}}</h4>
-      <span class="room-time">11:00 <v-icon>fas fa-clock</v-icon></span>
+      <span class="room-time">{{item.time}} {{item.timeRange}} <v-icon>fas fa-clock</v-icon></span>
     </div>
     <div class="retro-room-footer">
       <div
@@ -74,7 +74,8 @@ export default {
 <style lang="stylus">
   .retro-room
     padding 15px
-    width 320px
+    width 90%
+    cursor pointer
     background #fff
     border-radius 6px
     box-shadow 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)
@@ -115,7 +116,7 @@ export default {
       text-align left
 
       i
-        font-size 14px
+        font-size 18px
 
       button
         margin 0

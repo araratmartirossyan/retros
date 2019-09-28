@@ -56,9 +56,10 @@ export default {
   },
   mounted() {
     this.setRetroId()
+    this.forceCloseDialog()
   },
   destroyed() {
-    this.openMenu()
+    this.forceCloseDialog()
   },
   computed: {
     ...mapGetters([
@@ -72,7 +73,8 @@ export default {
     ]),
     ...mapMutations([
       'setRetroId',
-      'openMenu'
+      'openMenu',
+      'forceCloseDialog'
     ])
   }
 }

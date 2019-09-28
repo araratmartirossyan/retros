@@ -5,7 +5,7 @@
         <span
           @click="$router.push('/list')"
         >
-          RetrEwoks
+          {{logo}}
         </span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -32,6 +32,9 @@ import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'App',
+  data: () => ({
+    logo: '<Retros />'
+  }),
   methods: {
     ...mapActions([
       'signOut'
