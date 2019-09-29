@@ -107,6 +107,8 @@ export const removeRetro = async (retroId) => {
   }
 }
 
+console.log('hello')
+
 export default {
   initFirebase,
   fireAuth,
