@@ -55,8 +55,15 @@ export const onAuth = nextOrObserver => fireAuth.onAuthStateChanged(nextOrObserv
 export const getMarks = retroId => firebase.database()
   .ref(`marks/${retroId}`)
 
-export const getRetros = () => firebase.database()
+export const getActiveRetros = () => firebase.database()
   .ref('retros')
+  .orderByChild('status')
+  .equalTo('active')
+
+export const getFinishedRetros = () => firebase.database()
+  .ref('retros')
+  .orderByChild('status')
+  .equalTo('done')
 
 export const getRoom = async (id) => {
   try {
@@ -100,6 +107,8 @@ export const removeRetro = async (retroId) => {
   }
 }
 
+console.log('hello')
+
 export default {
   initFirebase,
   fireAuth,
@@ -108,7 +117,8 @@ export default {
   emailPasswordAuth,
   onAuth,
   getMarks,
-  getRetros,
+  getFinishedRetros,
+  getActiveRetros,
   addRetro,
   getRoom,
   removeRetro,

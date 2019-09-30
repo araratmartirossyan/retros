@@ -1,21 +1,39 @@
 <template>
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-      <v-btn
-        color="red"
-        class="white--text"
-        @click="openMenu('roomForm')"
-      >Create new room</v-btn>
-      <v-flex xs12 sm12 md12>
-        <List
+      <LineWrapper title="Active retros" :sizes="['md4', 'xs12', 'sm6']">
+        <v-btn
+          flat
+          icon
+          small
+          color="black"
+          class="controlled"
+          @click="openMenu('roomForm')"
+          slot="header"
+        >
+          <v-icon>fas fa-plus-circle</v-icon>
+        </v-btn>
+        <RetroCard
+          slot="content"
+          v-for="(item, key) in activeRetros"
+          :key="key"
+          :item="item"
+          :id="key"
           @onRetroClick="goTo"
           @onRetroEdit="getRoom"
-          :items="retros"
-          title="Avialiable Retrospectives"
-          toolbarColor="red"
-          isDark
         />
-      </v-flex>
+      </LineWrapper>
+      <LineWrapper title="Archive" :sizes="['md4', 'xs12', 'sm6']">
+        <RetroCard
+          v-for="(item, key) in finishedRetros"
+          :key="key"
+          :item="item"
+          :id="key"
+          @onRetroClick="goTo"
+          @onRetroEdit="getRoom"
+          slot="content"
+        />
+      </LineWrapper>
     </v-layout>
     <Dialog name="roomForm">
       <CreateRoomForm />
@@ -29,13 +47,15 @@ import { mapGetters, mapMutations, mapActions } from 'vuex'
 export default {
   name: 'Home',
   components: {
-    List: () => import('../components/List'),
     CreateRoomForm: () => import('../components/CreateRoomForm'),
-    Dialog: () => import('../components/Dialog')
+    Dialog: () => import('../components/Dialog'),
+    RetroCard: () => import('../components/RetroRoomCard'),
+    LineWrapper: () => import('../components/LineWrapper')
   },
   computed: {
     ...mapGetters([
-      'retros'
+      'activeRetros',
+      'finishedRetros'
     ])
   },
   methods: {
@@ -51,3 +71,8 @@ export default {
   }
 }
 </script>
+
+<style lang="stylus">
+  .controlled
+    margin 0
+</style>

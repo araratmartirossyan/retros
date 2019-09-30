@@ -12,8 +12,9 @@ new Vue({
   render: h => h(App),
   mounted() {
     onAuth((user) => {
+      console.log(user)
       if (!user) {
-        this.$router.push('/login')
+        this.$router.push('/')
       } else {
         this.$router.push('/list')
         this.$store.commit('putAuth')

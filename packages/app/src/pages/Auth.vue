@@ -103,4 +103,34 @@ export default {
     position absolute
     color black
     font-family Source Sans Pro,Arial,sans-serif
+
+  @media (max-width 1024px)
+    .auth-box
+      &_left
+        width 60%
+
+  @media (max-width 768px)
+    .auth
+      min-height 100vh
+      display flex
+      align-items center
+      justify-content center
+      background url(https://firebasestorage.googleapis.com/v0/b/retrewoks.appspot.com/o/15301.jpg?alt=media&token=edd7ae77-e77e-4d31-b242-fa4b18fa25ba)
+      background-size cover
+
+    .auth-box
+      flex-direction column
+
+      &_left
+        width 100%
+        border-radius 12px
+        height initial
+
+        h3
+          color black
+          font-weight 300
+          font-size 1.6em
+
+      &_right
+        display none
 </style>

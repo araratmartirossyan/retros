@@ -3,7 +3,6 @@
     class="mx-auto"
     :color="cardColor"
     dark
-    max-width="400"
   >
     <v-card-text class="headline font-weight-bold">
       "{{mark.text}}"
@@ -59,4 +58,6 @@ export default {
   .mx-auto
     margin-bottom 10px!important
     cursor pointer!important
+    border-radius 12px
+    max-width 90%
 </style>

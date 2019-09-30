@@ -33,9 +33,16 @@
             no-title
             v-model="date"
           >
-            <v-btn color="primary" flat @click="menu = false">Cancel</v-btn>
-            <v-spacer></v-spacer>
-            <v-btn color="primary" @click="UpdateValue">Select</v-btn>
+            <v-btn
+              color="primary"
+              flat
+              @click="menu = false"
+            >Cancel</v-btn>
+            <v-spacer />
+            <v-btn
+              color="primary"
+              @click="UpdateValue"
+            >Select</v-btn>
           </v-date-picker>
         </v-menu>
       </v-flex>

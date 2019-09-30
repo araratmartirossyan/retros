@@ -14,12 +14,21 @@
             :value="roomForm.title"
           />
         </v-flex>
-        <DatePicker
-          name="date"
-          label="Retrospective date"
-          @fieldUpdated="updateRoomForm"
-          :value="roomForm.date"
-        />
+        <v-flex xs12 row>
+          <DatePicker
+            name="date"
+            label="Retrospective date"
+            @fieldUpdated="updateRoomForm"
+            :value="roomForm.date"
+          />
+        </v-flex>
+        <v-flex xs12 row>
+          <TimePicker
+            @updateTime="updateRoomForm"
+            :time="roomForm.time"
+            :timeRange="roomForm.timeRange"
+          />
+        </v-flex>
         <v-flex xs12 row>
           <v-flex xs12>
             <v-btn
@@ -55,7 +64,8 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 export default {
   name: 'CreateRoomForm',
   components: {
-    DatePicker: () => import('./DatePicker')
+    DatePicker: () => import('./DatePicker'),
+    TimePicker: () => import('./TimePicker')
   },
   methods: {
     handleForm() {
