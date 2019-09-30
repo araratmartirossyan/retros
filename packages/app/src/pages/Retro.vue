@@ -1,26 +1,30 @@
 <template>
-  <v-container grid-list-md text-xs-center>
+  <v-container
+    grid-list-md
+    :class="{
+      fluid: windowWidth < 1904
+    }"
+  >
     <v-layout row wrap>
-      <v-flex
-        v-for="(card, key) in cards"
+      <LineWrapper
+        v-for="({ color, title, type }, key) in cards"
         :key="key"
-        xs12
-        sm6
-        md3
+        :title="title"
+        :sizes="['md3', 'xs12', 'sm6']"
       >
-        <h2>{{card.title}}</h2>
         <div
+          slot="content"
           class="item"
           v-for="(item, index) in marks"
           :key="index"
         >
           <MarkCard
-            v-if="item.type === card.type"
-            :cardColor="card.color"
+            v-if="item.type === type"
+            :cardColor="color"
             :mark="item"
           />
         </div>
-      </v-flex>
+      </LineWrapper>
     </v-layout>
     <Dialog name="menu">
       <MenuDialog />
@@ -47,12 +51,17 @@ import { cards } from './mark.mock'
 export default {
   name: 'Home',
   data: () => ({
-    cards
+    cards,
+    windowWidth: window.innerWidth
   }),
   components: {
     MarkCard: () => import('../components/MarkCard'),
     Dialog: () => import('../components/Dialog'),
-    MenuDialog: () => import('../components/MenuDialog')
+    MenuDialog: () => import('../components/MenuDialog'),
+    LineWrapper: () => import('../components/LineWrapper')
+  },
+  created() {
+    window.addEventListener('resize', this.handleResize)
   },
   mounted() {
     this.setRetroId()
@@ -60,6 +69,7 @@ export default {
   },
   destroyed() {
     this.forceCloseDialog()
+    window.removeEventListener('resize', this.handleResize)
   },
   computed: {
     ...mapGetters([
@@ -75,7 +85,10 @@ export default {
       'setRetroId',
       'openMenu',
       'forceCloseDialog'
-    ])
+    ]),
+    handleResize() {
+      this.windowWidth = window.innerWidth
+    }
   }
 }
 </script>

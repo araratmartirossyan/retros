@@ -1,46 +1,39 @@
 <template>
   <v-container grid-list-md text-xs-center>
     <v-layout row wrap>
-      <v-flex xs4 sm4 md4 text-md-left>
-        <div class="room-card_holder">
-          <div class="column-holder">
-            <h2>Active retros</h2>
-            <v-btn
-              flat
-              icon
-              color="black"
-              class="controlled"
-              @click="openMenu('roomForm')"
-              small
-            >
-              <v-icon>fas fa-plus-circle</v-icon>
-            </v-btn>
-          </div>
-          <RetroCard
-            v-for="(item, key) in activeRetros"
-            :key="key"
-            :item="item"
-            :id="key"
-            @onRetroClick="goTo"
-            @onRetroEdit="getRoom"
-          />
-        </div>
-      </v-flex>
-      <v-flex xs4 sm4 md4 text-md-left>
-        <div class="room-card_holder">
-          <div class="column-holder">
-            <h2>Finished retros</h2>
-          </div>
-          <RetroCard
-            v-for="(item, key) in finishedRetros"
-            :key="key"
-            :item="item"
-            :id="key"
-            @onRetroClick="goTo"
-            @onRetroEdit="getRoom"
-          />
-        </div>
-      </v-flex>
+      <LineWrapper title="Active retros" :sizes="['md4', 'xs12', 'sm6']">
+        <v-btn
+          flat
+          icon
+          small
+          color="black"
+          class="controlled"
+          @click="openMenu('roomForm')"
+          slot="header"
+        >
+          <v-icon>fas fa-plus-circle</v-icon>
+        </v-btn>
+        <RetroCard
+          slot="content"
+          v-for="(item, key) in activeRetros"
+          :key="key"
+          :item="item"
+          :id="key"
+          @onRetroClick="goTo"
+          @onRetroEdit="getRoom"
+        />
+      </LineWrapper>
+      <LineWrapper title="Archive" :sizes="['md4', 'xs12', 'sm6']">
+        <RetroCard
+          v-for="(item, key) in finishedRetros"
+          :key="key"
+          :item="item"
+          :id="key"
+          @onRetroClick="goTo"
+          @onRetroEdit="getRoom"
+          slot="content"
+        />
+      </LineWrapper>
     </v-layout>
     <Dialog name="roomForm">
       <CreateRoomForm />
@@ -56,7 +49,8 @@ export default {
   components: {
     CreateRoomForm: () => import('../components/CreateRoomForm'),
     Dialog: () => import('../components/Dialog'),
-    RetroCard: () => import('../components/RetroRoomCard')
+    RetroCard: () => import('../components/RetroRoomCard'),
+    LineWrapper: () => import('../components/LineWrapper')
   },
   computed: {
     ...mapGetters([
@@ -79,22 +73,6 @@ export default {
 </script>
 
 <style lang="stylus">
-  .room-card_holder
-    background #f3f3f3
-    text-align -webkit-center
-    box-shadow 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)
-    padding 10px 0 10px 0
-    border-radius 6px
-
   .controlled
     margin 0
-    &:before
-      &:hover
-        background-color none
-
-  .column-holder
-    text-align left
-    margin 10px 5%
-    display flex
-    justify-content space-between
 </style>
