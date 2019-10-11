@@ -1,47 +1,50 @@
 <template>
-  <v-container
-    grid-list-md
-    :class="{
-      fluid: windowWidth < 1904
-    }"
-  >
-    <v-layout row wrap>
-      <LineWrapper
-        v-for="({ color, title, type }, key) in cards"
-        :key="key"
-        :title="title"
-        :sizes="['md3', 'xs12', 'sm6']"
-      >
-        <div
-          slot="content"
-          class="item"
-          v-for="(item, index) in marks"
-          :key="index"
+  <div class="room">
+    <RetroToolbar :roomDescription="roomDescription" />
+    <v-container
+      grid-list-md
+      :class="{
+        fluid: windowWidth < 1904
+      }"
+    >
+      <v-layout row wrap>
+        <LineWrapper
+          v-for="({ color, title, type }, key) in cards"
+          :key="key"
+          :title="title"
+          :sizes="['md3', 'xs12', 'sm6']"
         >
-          <MarkCard
-            v-if="item.type === type"
-            :cardColor="color"
-            :mark="item"
-          />
-        </div>
-      </LineWrapper>
-    </v-layout>
-    <Dialog name="menu">
-      <MenuDialog />
-    </Dialog>
-    <div class="float-button">
-      <v-btn
-        @click="openMenu('menu')"
-        color="success"
-        fab
-        large
-        dark
-      >
-        <v-icon v-if="isMenuOpen">close</v-icon>
-        <v-icon v-else>add</v-icon>
-      </v-btn>
-    </div>
-  </v-container>
+          <div
+            slot="content"
+            class="item"
+            v-for="(item, index) in marks"
+            :key="index"
+          >
+            <MarkCard
+              v-if="item.type === type"
+              :cardColor="color"
+              :mark="item"
+            />
+          </div>
+        </LineWrapper>
+      </v-layout>
+      <Dialog name="menu">
+        <MenuDialog />
+      </Dialog>
+      <div class="float-button">
+        <v-btn
+          @click="openMenu('menu')"
+          color="success"
+          fab
+          large
+          dark
+        >
+          <v-icon v-if="isMenuOpen">close</v-icon>
+          <v-icon v-else>add</v-icon>
+        </v-btn>
+      </div>
+    </v-container>
+  </div>
 </template>
 
 <script>
@@ -58,14 +61,17 @@ export default {
     MarkCard: () => import('../components/MarkCard'),
     Dialog: () => import('../components/Dialog'),
     MenuDialog: () => import('../components/MenuDialog'),
-    LineWrapper: () => import('../components/LineWrapper')
+    LineWrapper: () => import('../components/LineWrapper'),
+    RetroToolbar: () => import('../components/RetroToolbar')
   },
   created() {
     window.addEventListener('resize', this.handleResize)
   },
   mounted() {
+    const { id } = this.$route.params
     this.setRetroId()
     this.forceCloseDialog()
+    this.getRoomDescription(id)
   },
   destroyed() {
     this.forceCloseDialog()
@@ -74,12 +80,14 @@ export default {
   computed: {
     ...mapGetters([
       'marks',
-      'isMenuOpen'
+      'isMenuOpen',
+      'roomDescription'
     ])
   },
   methods: {
     ...mapActions([
-      'pushMark'
+      'pushMark',
+      'getRoomDescription'
     ]),
     ...mapMutations([
       'setRetroId',
@@ -99,4 +107,29 @@ export default {
     bottom 0
     right 0
     z-index 9999
+
+  .back-button
+    color white
+    i
+      margin-right 10px
+      color white
+      font-size 16px
+
+  .tollbar
+    background #f5f5f5
+    width 100%
+    padding-bottom 20px
+
+    &-retro-block
+      margin-left 25px
+
+      h2
+        font-weight 200
+        font-size 28px
+
+      &__time
+        i
+          vertical-align bottom
+          margin-right 10px
+
 </style>

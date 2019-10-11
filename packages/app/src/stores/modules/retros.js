@@ -7,7 +7,7 @@ import {
   updateRoom
 } from '@retros/firebase-adapter'
 import { omit } from 'ramda'
-import { prepareDate } from '@/utils/retroUtils'
+import { prepareDate, convertTime } from '@/utils/retroUtils'
 
 const state = {
   activeRetros: [],
@@ -16,8 +16,10 @@ const state = {
   roomForm: {
     title: '',
     date: new Date(),
-    isEdit: false
-  }
+    isEdit: false,
+    status: 'active'
+  },
+  room: {}
 }
 
 const getters = {
@@ -35,7 +37,8 @@ const getters = {
     })
     return state.finishedRetros
   },
-  getRoom: () => state.roomForm
+  getRoom: () => state.roomForm,
+  roomDescription: () => state.room
 }
 
 const mutations = {
@@ -47,6 +50,9 @@ const mutations = {
       ...room,
       isEdit: true
     }
+  },
+  setRoomDescription(_, room) {
+    state.room = room
   }
 }
 
@@ -63,12 +69,27 @@ const actions = {
       console.warn('get room failed', err)
     }
   },
+  async getRoomDescription({ commit }, id) {
+    try {
+      const room = await getRoom(id)
+      await commit('setRoomDescription', {
+        ...room,
+        id
+      })
+    } catch (err) {
+      console.warn('get room failed', err)
+    }
+  },
   async updateRoom({ dispatch }) {
-    const { id, date } = state.roomForm
+    const { id, date, time } = state.roomForm
     const clearedForm = omit(['id', 'isEdit'], state.roomForm)
     const convertedDate = prepareDate(date)
     try {
-      await updateRoom(id, { ...clearedForm, ...convertedDate })
+      await updateRoom(id, {
+        ...clearedForm,
+        ...convertedDate,
+        time: convertTime(time)
+      })
       state.roomForm = {}
       await dispatch('closeDialog', {}, { root: true })
     } catch (err) {
@@ -76,9 +97,12 @@ const actions = {
     }
   },
   async createRoom({ dispatch }) {
-    const marks = getActiveRetros()
-    await addRetro(marks, {
-      ...state.roomForm
+    const { date, time } = state.roomForm
+    const convertedDate = prepareDate(date)
+    await addRetro({
+      ...state.roomForm,
+      ...convertedDate,
+      time: convertTime(time)
     })
     state.roomForm = {}
     await dispatch('closeDialog', {}, { root: true })
