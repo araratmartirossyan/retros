@@ -17,3 +17,8 @@ export const prepareDate = (date) => {
     weekDay: weekDays[weekDay - 1]
   }
 }
+
+export const convertTime = (time) => {
+  const [hour, secondHour, minute, secondMinute] = time.split('')
+  return `${hour}${secondHour}:${minute}${secondMinute}`
+}

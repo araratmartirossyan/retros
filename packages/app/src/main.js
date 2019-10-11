@@ -12,7 +12,6 @@ new Vue({
   render: h => h(App),
   mounted() {
     onAuth((user) => {
-      console.log(user)
       if (!user) {
         this.$router.push('/')
       } else {

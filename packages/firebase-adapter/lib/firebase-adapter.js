@@ -12,7 +12,6 @@ const {
   VUE_APP_APP_ID
 } = process.env
 
-console.log(process)
 
 const firebaseConfig = {
   apiKey: VUE_APP_API_KEY,
@@ -26,10 +25,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig)
 
-export const initFirebase = () => {
-  console.warn(firebaseConfig)
-  firebase.initializeApp(firebaseConfig)
-}
+export const initFirebase = () => firebase.initializeApp(firebaseConfig)
 
 
 /* firebase authentication methods */
@@ -42,7 +38,7 @@ export const signOut = async () => {
 }
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
-googleAuthProvider.addScope('https://www.googleapis.com/auth/contacts.readonly')
+// googleAuthProvider.addScope('https://www.googleapis.com/auth/contacts.readonly')
 
 export const googleAuth = () => fireAuth.signInWithPopup(googleAuthProvider)
 
@@ -85,9 +81,9 @@ export const updateRoom = async (id, formData) => {
   }
 }
 
-export const addRetro = async (dataBase, data) => {
+export const addRetro = async (data) => {
   try {
-    const response = await dataBase.push(data)
+    const response = await firebase.database().ref('retros').push(data)
     return response
   } catch (err) {
     console.warn('on retro create error', err)
@@ -106,8 +102,6 @@ export const removeRetro = async (retroId) => {
     return err
   }
 }
-
-console.log('hello')
 
 export default {
   initFirebase,
