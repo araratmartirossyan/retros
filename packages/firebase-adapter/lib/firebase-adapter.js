@@ -2,6 +2,16 @@ import firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/database'
 
+const app = {
+  apiKey: 'AIzaSyAuuV9Yn3CHXLJM09tFwS0NsZrGznidgTI',
+  authDomain: 'retros.me',
+  databaseURL: 'https://retros.me',
+  projectId: 'retrewoks',
+  storageBucket: 'retrewoks.appspot.com',
+  messagingSenderId: '821153639587',
+  appId: '1:821153639587:web:10250af2ac0f0fa'
+}
+
 const {
   VUE_APP_API_KEY,
   VUE_APP_AUTH_DOMAIN,
@@ -23,7 +33,7 @@ const firebaseConfig = {
   appId: VUE_APP_APP_ID
 }
 
-firebase.initializeApp(firebaseConfig)
+firebase.initializeApp(app)
 
 export const initFirebase = () => firebase.initializeApp(firebaseConfig)
 
